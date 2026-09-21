@@ -36,3 +36,8 @@ def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
     token = create_access_token({"sub": str(db_user.id), "email": db_user.email})
 
     return {"access_token": token, "token_type": "bearer"}
+from app.core.dependencies import get_current_user
+
+@router.get("/me", response_model=schemas.UserOut)
+def get_me(current_user: models.User = Depends(get_current_user)):
+    return current_user
