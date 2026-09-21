@@ -1,17 +1,18 @@
-from pydantic import BaseModel, EmailStr
+from typing import Optional
+from datetime import date
 
-# What the frontend sends when registering
+from pydantic import BaseModel, EmailStr
 class UserCreate(BaseModel):
     name: str
     email: EmailStr
     password: str
 
-# What the frontend sends when logging in
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
-# What we send back (never include password_hash!)
+
 class UserOut(BaseModel):
     id: int
     name: str
@@ -20,7 +21,34 @@ class UserOut(BaseModel):
     class Config:
         from_attributes = True
 
-# What we send back after successful login
+
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+class CourseCreate(BaseModel):
+    course_name: str
+    description: Optional[str] = None
+    difficulty: Optional[str] = "Medium"
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+
+
+class CourseUpdate(BaseModel):
+    course_name: Optional[str] = None
+    description: Optional[str] = None
+    difficulty: Optional[str] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+
+
+class CourseOut(BaseModel):
+    id: int
+    course_name: str
+    description: Optional[str] = None
+    difficulty: str
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+
+    class Config:
+        from_attributes = True
