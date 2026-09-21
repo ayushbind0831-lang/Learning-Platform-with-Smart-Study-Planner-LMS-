@@ -1,6 +1,6 @@
 from typing import Optional
 from datetime import date
-
+from datetime import datetime
 from pydantic import BaseModel, EmailStr
 class UserCreate(BaseModel):
     name: str
@@ -49,6 +49,37 @@ class CourseOut(BaseModel):
     difficulty: str
     start_date: Optional[date] = None
     end_date: Optional[date] = None
+
+    class Config:
+        from_attributes = True
+        from datetime import datetime
+
+class TaskCreate(BaseModel):
+    course_id: int
+    title: str
+    description: Optional[str] = None
+    deadline: Optional[datetime] = None
+    estimated_hours: Optional[float] = 1.0
+    priority: Optional[str] = "Medium"
+    status: Optional[str] = "Pending"
+
+class TaskUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    deadline: Optional[datetime] = None
+    estimated_hours: Optional[float] = None
+    priority: Optional[str] = None
+    status: Optional[str] = None
+
+class TaskOut(BaseModel):
+    id: int
+    course_id: int
+    title: str
+    description: Optional[str]
+    deadline: Optional[datetime]
+    estimated_hours: float
+    priority: str
+    status: str
 
     class Config:
         from_attributes = True

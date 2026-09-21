@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import engine, Base
 from app import models
-from app.router import auth, courses
+from app.router import auth, courses, tasks
 
 
 # Create database tables
@@ -37,6 +37,14 @@ app.include_router(
     courses.router,
     prefix="/api/courses",
     tags=["Courses"]
+)
+
+
+# Task routes
+app.include_router(
+    tasks.router,
+    prefix="/api/tasks",
+    tags=["Tasks"]
 )
 
 
