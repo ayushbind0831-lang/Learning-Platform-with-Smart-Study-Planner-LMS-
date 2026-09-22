@@ -54,3 +54,6 @@ def home():
     return {
         "message": "StudySmart is running"
     }
+from app.router import auth, courses, tasks, planner
+
+app.include_router(planner.router, prefix="/api/planner", tags=["Planner"])

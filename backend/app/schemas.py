@@ -83,3 +83,16 @@ class TaskOut(BaseModel):
 
     class Config:
         from_attributes = True
+class PlannerRequest(BaseModel):
+    available_hours: float
+    start_time: Optional[str] = "18:00"   # 24-hour format, e.g. "14:30"
+
+class ScheduleSlot(BaseModel):
+    task_id: int
+    title: str
+    course: Optional[str]
+    priority: str
+    allocated_hours: float
+    fully_scheduled: bool
+    start_time: str
+    end_time: str
