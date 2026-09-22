@@ -1,7 +1,13 @@
 from typing import Optional
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime
+
 from pydantic import BaseModel, EmailStr
+
+
+# =========================================================
+# USER SCHEMAS
+# =========================================================
+
 class UserCreate(BaseModel):
     name: str
     email: EmailStr
@@ -25,6 +31,11 @@ class UserOut(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+# =========================================================
+# COURSE SCHEMAS
+# =========================================================
 
 class CourseCreate(BaseModel):
     course_name: str
@@ -52,7 +63,11 @@ class CourseOut(BaseModel):
 
     class Config:
         from_attributes = True
-        from datetime import datetime
+
+
+# =========================================================
+# TASK SCHEMAS
+# =========================================================
 
 class TaskCreate(BaseModel):
     course_id: int
@@ -63,6 +78,7 @@ class TaskCreate(BaseModel):
     priority: Optional[str] = "Medium"
     status: Optional[str] = "Pending"
 
+
 class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
@@ -71,28 +87,41 @@ class TaskUpdate(BaseModel):
     priority: Optional[str] = None
     status: Optional[str] = None
 
+
 class TaskOut(BaseModel):
     id: int
     course_id: int
     title: str
-    description: Optional[str]
-    deadline: Optional[datetime]
+    description: Optional[str] = None
+    deadline: Optional[datetime] = None
     estimated_hours: float
     priority: str
     status: str
 
     class Config:
         from_attributes = True
+
+
+# =========================================================
+# STUDY PLANNER SCHEMAS
+# =========================================================
+
 class PlannerRequest(BaseModel):
     available_hours: float
-    start_time: Optional[str] = "18:00"   # 24-hour format, e.g. "14:30"
+    start_time: Optional[str] = "18:00"
+
 
 class ScheduleSlot(BaseModel):
     task_id: int
     title: str
-    course: Optional[str]
+    course: Optional[str] = None
     priority: str
     allocated_hours: float
     fully_scheduled: bool
     start_time: str
     end_time: str
+
+class CourseProgress(BaseModel):
+    total_tasks: int
+    completed_tasks: int
+    progress_percentage: float

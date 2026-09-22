@@ -57,3 +57,6 @@ def home():
 from app.router import auth, courses, tasks, planner
 
 app.include_router(planner.router, prefix="/api/planner", tags=["Planner"])
+from app.router import progress
+
+app.include_router(progress.router, prefix="/api/progress", tags=["Progress"])
