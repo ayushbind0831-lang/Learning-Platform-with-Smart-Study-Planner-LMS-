@@ -10,6 +10,7 @@ from sqlalchemy import (
 )
 
 from sqlalchemy.orm import relationship
+from sqlalchemy import Boolean
 
 from app.database import Base
 
@@ -155,3 +156,12 @@ class Task(Base):
         "Course",
         back_populates="tasks"
     )
+
+class Reminder(Base):
+    __tablename__ = "reminders"
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    task_id = Column(Integer, ForeignKey("tasks.id"), nullable=True)
+    reminder_date = Column(DateTime)
+    message = Column(String(255))
+    is_read = Column(Boolean, default=False)
