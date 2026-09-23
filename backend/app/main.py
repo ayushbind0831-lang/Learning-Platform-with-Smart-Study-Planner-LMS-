@@ -61,6 +61,7 @@ from fastapi import FastAPI
 from app.router import auth
 from app.router import tasks
 from app.router import reminders
+from app.router import analytics
 
 app = FastAPI(title="StudySmart API")
 
@@ -80,6 +81,11 @@ app.include_router(
     reminders.router,
     prefix="/api/reminders",
     tags=["Reminders"]
+)
+app.include_router(
+    analytics.router,
+    prefix="/api/analytics",
+    tags=["Analytics"]
 )
 
 
