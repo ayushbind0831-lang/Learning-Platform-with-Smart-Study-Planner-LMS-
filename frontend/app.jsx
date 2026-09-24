@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Courses from "./pages/Courses";
+
+<Route path="/courses" element={<Courses />} />
 
 function App() {
   return (
