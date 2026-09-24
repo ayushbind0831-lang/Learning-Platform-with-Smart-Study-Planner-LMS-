@@ -8,6 +8,10 @@ import Courses from "./pages/Courses";
 import Tasks from "./pages/Tasks";
 
 <Route path="/tasks" element={<Tasks />} />
+import Progress from "./pages/Progress";
+
+// inside <Routes>
+<Route path="/progress" element={<Progress />} />
 
 function App() {
   return (
