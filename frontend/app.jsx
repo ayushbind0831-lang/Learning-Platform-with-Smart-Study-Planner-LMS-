@@ -5,6 +5,9 @@ import Dashboard from "./pages/Dashboard";
 import Courses from "./pages/Courses";
 
 <Route path="/courses" element={<Courses />} />
+import Tasks from "./pages/Tasks";
+
+<Route path="/tasks" element={<Tasks />} />
 
 function App() {
   return (
