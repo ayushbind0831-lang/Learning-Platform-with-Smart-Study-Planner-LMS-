@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from app import models, schemas
 from app.database import get_db
-from app.services.progess_service import calculate_course_progress
+from app.services.progress_service import calculate_course_progress
 from app.router.auth import get_current_user
 
 

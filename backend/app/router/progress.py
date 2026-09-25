@@ -5,7 +5,7 @@ from typing import List
 from app.database import get_db
 from app import models, schemas
 from app.core.dependencies import get_current_user
-from app.services.progess_service import calculate_course_progress
+from app.services.progress_service import calculate_course_progress
 
 router = APIRouter()
 

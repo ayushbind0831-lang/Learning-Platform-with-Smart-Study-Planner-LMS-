@@ -1,7 +1,11 @@
+import os
 from datetime import datetime, timedelta
 from jose import jwt
+from dotenv import load_dotenv
 
-SECRET_KEY = "change-this-to-a-random-long-string-later"
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback-dev-secret-change-in-production")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day
 
